@@ -1,3 +1,4 @@
 import StyledText from './text/StyledText'
+import StyledButton from './button/StyledButton'
 
-export { StyledText }
+export { StyledText, StyledButton }

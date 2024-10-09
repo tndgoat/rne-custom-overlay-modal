@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
-import { StyledText } from './src/components'
+import { StyleSheet, View } from 'react-native'
+import { StyledText, StyledButton } from './src/components'
+import { appColors } from './src/config/theme'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <StyledText big bold>
+      <StyledText style={styles.text} bold>
         RNE CUSTOM OVERLAY MODAL
       </StyledText>
+      <StyledButton onPress={() => {}}>Success</StyledButton>
+      <StatusBar style="auto" />
     </View>
   )
 }
@@ -15,8 +18,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: appColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 25,
+  },
+  text: {
+    marginBottom: 20,
+    textAlign: 'center',
   },
 })
