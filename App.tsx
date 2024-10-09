@@ -1,64 +1,11 @@
-import { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
 import { StyledText, StyledButton, MessageModal, MessageTypes } from './src/components'
 import { appColors } from './src/config/theme'
-
-export type RequiredMessageModalPropsType = {
-  messageType: MessageTypes
-  headerText: string
-  messageText: string
-  onDismiss: () => any
-  onProceed: () => any
-}
-export type ExtraMessageModalPropsType = {
-  buttonText?: string
-  altButtonText?: string
-  onDismiss?: () => any
-  onReject?: () => any
-}
+import { useMessageModal } from './src/hooks'
 
 export default function App() {
-  const [messageModalVisible, setMessageModalVisible] = useState(false)
-  const [requiredMessageModalProps, setRequiredMessageModalProps] = useState<RequiredMessageModalPropsType>({
-    messageType: MessageTypes.INFO,
-    headerText: '',
-    messageText: '',
-    onDismiss: () => {},
-    onProceed: () => {},
-  })
-
-  const [extraMessageModalProps, setExtraMessageModalProps] = useState<ExtraMessageModalPropsType | undefined>({})
-
-  const [isLoading, setIsLoading] = useState(false)
-  const [isProceeding, setIsProceeding] = useState(false)
-  const [isRejecting, setIsRejecting] = useState(false)
-
-  const hideModal = () => {
-    setMessageModalVisible(false)
-  }
-
-  const showMessageModal = (messageType: MessageTypes, headerText: string, messageText: string, onProceed: () => any, extraProps?: ExtraMessageModalPropsType) => {
-    setMessageModalVisible(true)
-    setRequiredMessageModalProps({
-      messageType,
-      headerText,
-      messageText,
-      onProceed,
-      onDismiss: hideModal,
-    })
-    setExtraMessageModalProps(extraProps)
-  }
-
-  const messageModalState = {
-    messageModalVisible,
-    ...requiredMessageModalProps,
-    ...extraMessageModalProps,
-    isLoading,
-    isProceeding,
-    isRejecting,
-  }
-
+  const { messageModalState, showMessageModal, hideModal } = useMessageModal()
   const handleProceed = () => {
     console.log('Proceeding')
     hideModal()
