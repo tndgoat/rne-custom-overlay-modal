@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
-import { StyledText, StyledButton } from './src/components'
+import { StyledText, StyledButton, MessageModal } from './src/components'
 import { appColors } from './src/config/theme'
 
 export default function App() {
@@ -10,6 +10,7 @@ export default function App() {
         RNE CUSTOM OVERLAY MODAL
       </StyledText>
       <StyledButton onPress={() => {}}>Success</StyledButton>
+      <MessageModal />
       <StatusBar style="auto" />
     </View>
   )
